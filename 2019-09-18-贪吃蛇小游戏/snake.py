@@ -2,15 +2,16 @@
 import random
 import pygame
 import sys
+import os
 
 from pygame.locals import *
 
-snake_speed = 5 #贪吃蛇的速度
+snake_speed =15 #贪吃蛇的速度
 windows_width = 800
 windows_height = 600 #游戏窗口的大小
 cell_size = 20       #贪吃蛇身体方块大小,注意身体大小必须能被窗口长宽整除
 
-''' #初始化区
+''' 初始化区
 由于我们的贪吃蛇是有大小尺寸的, 因此地图的实际尺寸是相对于贪吃蛇的大小尺寸而言的
 '''
 map_width = int(windows_width / cell_size)
@@ -27,8 +28,8 @@ Red = (255, 0, 0)
 blue = (0, 0, 255)
 dark_blue =(0,0, 139)
 
-
-BG_COLOR = black #游戏背景颜色
+#游戏背景颜色
+BG_COLOR = black 
 
 # 定义方向
 UP = 1
@@ -36,13 +37,14 @@ DOWN = 2
 LEFT = 3
 RIGHT = 4
 
-HEAD = 0 #贪吃蛇头部下标
+#贪吃蛇头部下标
+HEAD = 0 
 
 #主函数
 def main():
 	pygame.init() # 模块初始化
 	snake_speed_clock = pygame.time.Clock() # 创建Pygame时钟对象
-	screen = pygame.display.set_mode((windows_width, windows_height)) #
+	screen = pygame.display.set_mode((windows_width, windows_height)) #居中实现难度比较大
 	screen.fill(white)
 
 	pygame.display.set_caption("2019-09-18-贪吃蛇小游戏") #设置标题
@@ -112,12 +114,14 @@ def running_game(screen,snake_speed_clock):
 		draw_score(screen, len(snake_coords) - 3)
 		pygame.display.update()
 		snake_speed_clock.tick(snake_speed) #控制fps
+
 #将食物画出来
 def draw_food(screen, food):
 	x = food['x'] * cell_size
 	y = food['y'] * cell_size
 	appleRect = pygame.Rect(x, y, cell_size, cell_size)
 	pygame.draw.rect(screen, Red, appleRect)
+
 #将贪吃蛇画出来
 def draw_snake(screen, snake_coords):
 	for coord in snake_coords:
@@ -128,12 +132,14 @@ def draw_snake(screen, snake_coords):
 		wormInnerSegmentRect = pygame.Rect(                #蛇身子里面的第二层亮绿色
 			x + 4, y + 4, cell_size - 8, cell_size - 8)
 		pygame.draw.rect(screen, blue, wormInnerSegmentRect)
+
 #画网格(可选)
 def draw_grid(screen):
 	for x in range(0, windows_width, cell_size):  # draw 水平 lines
 		pygame.draw.line(screen, dark_gray, (x, 0), (x, windows_height))
 	for y in range(0, windows_height, cell_size):  # draw 垂直 lines
 		pygame.draw.line(screen, dark_gray, (0, y), (windows_width, y))
+
 #移动贪吃蛇（左上角为坐标原点【0,0】，向右横坐标，向下纵坐标）
 def move_snake(direction, snake_coords):
     if direction == UP:
@@ -146,6 +152,7 @@ def move_snake(direction, snake_coords):
         newHead = {'x': snake_coords[HEAD]['x'] + 1, 'y': snake_coords[HEAD]['y']}
 
     snake_coords.insert(0, newHead)
+
 #判断蛇死了没
 def snake_is_alive(snake_coords):
 	tag = True
@@ -156,19 +163,21 @@ def snake_is_alive(snake_coords):
 		if snake_body['x'] == snake_coords[HEAD]['x'] and snake_body['y'] == snake_coords[HEAD]['y']:
 			tag = False # 蛇碰到自己身体啦
 	return tag
+
 #判断贪吃蛇是否吃到食物
-def snake_is_eat_food(snake_coords, food):  #如果是列表或字典，那么函数内修改参数内容，就会影响到函数体外的对象。
-	if snake_coords[HEAD]['x'] == food['x'] and snake_coords[HEAD]['y'] == food['y']:
+def snake_is_eat_food(snake_coords, food):     #如果是列表或字典，那么函数内修改参数内容，就会影响到函数体外的对象。
+	if snake_coords[HEAD]['x'] == food['x'] and snake_coords[HEAD]['y'] == food['y']:   
 		food['x'] = random.randint(0, map_width - 1)
 		food['y'] = random.randint(0, map_height - 1) # 实物位置重新设置
 	else:
 		del snake_coords[-1]  # 如果没有吃到实物, 就向前移动, 那么尾部一格删掉
+
 #食物随机生成
-def get_random_location():
+def get_random_location():  
 	return {'x': random.randint(0, map_width - 1), 'y': random.randint(0, map_height - 1)}
 
 #游戏结束信息显示
-def show_gameover_info(screen):
+def show_gameover_info(screen):  
 	font = pygame.font.Font('myfont.ttf', 40)
 	tip = font.render('按Q或者ESC退出游戏, 按任意键重新开始游戏~', True, (65, 105, 225))
 	gamestart = pygame.image.load('gameover.png')
@@ -185,15 +194,17 @@ def show_gameover_info(screen):
 					terminate() #终止程序
 				else:
 					return #结束此函数, 重新开始游戏
+
 #画成绩
-def draw_score(screen,score):
+def draw_score(screen,score):  
 	font = pygame.font.Font('myfont.ttf', 30)
 	scoreSurf = font.render('得分: %s' % score, True, Green)
 	scoreRect = scoreSurf.get_rect()
 	scoreRect.topleft = (windows_width - 120, 10)
 	screen.blit(scoreSurf, scoreRect)
+
 #程序终止
 def terminate(): 
 	pygame.quit()
-	sys.exit()
+	os._exit(1) #sys.exit()
 main()
