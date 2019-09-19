@@ -193,7 +193,7 @@ def draw_score(screen,score):
 	scoreRect.topleft = (windows_width - 120, 10)
 	screen.blit(scoreSurf, scoreRect)
 #程序终止
-def terminate():
+def terminate(): 
 	pygame.quit()
 	sys.exit()
 main()
