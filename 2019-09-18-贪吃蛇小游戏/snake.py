@@ -5,8 +5,7 @@ import sys
 
 from pygame.locals import *
 
-
-snake_speed = 15 #贪吃蛇的速度
+snake_speed = 5 #贪吃蛇的速度
 windows_width = 800
 windows_height = 600 #游戏窗口的大小
 cell_size = 20       #贪吃蛇身体方块大小,注意身体大小必须能被窗口长宽整除
@@ -46,12 +45,30 @@ def main():
 	screen = pygame.display.set_mode((windows_width, windows_height)) #
 	screen.fill(white)
 
-	pygame.display.set_caption("Python 贪吃蛇小游戏") #设置标题
+	pygame.display.set_caption("2019-09-18-贪吃蛇小游戏") #设置标题
 	show_start_info(screen)               #欢迎信息
 	while True:
 		running_game(screen, snake_speed_clock)
 		show_gameover_info(screen)
 
+#开始信息显示
+def show_start_info(screen):
+	font = pygame.font.Font('myfont.ttf', 40)
+	tip = font.render('按任意键开始游戏~~~', True, (65, 105, 225))
+	gamestart = pygame.image.load('gamestart.png')
+	screen.blit(gamestart, (140, 30))
+	screen.blit(tip, (240, 550))
+	pygame.display.update()
+
+	while True:  #键盘监听事件
+		for event in pygame.event.get():  # event handling loop
+			if event.type == QUIT:
+				terminate()     #终止程序
+			elif event.type == KEYDOWN:
+				if (event.key == K_ESCAPE):  #终止程序
+					terminate() #终止程序
+				else:
+					return #结束此函数, 开始游戏
 
 #游戏运行主体
 def running_game(screen,snake_speed_clock):
@@ -63,7 +80,7 @@ def running_game(screen,snake_speed_clock):
 
 	direction = RIGHT       #  开始时向右移动
 
-	food = get_random_location()     #实物随机位置
+	food = get_random_location()     #食物随机位置
 
 	while True:
 		for event in pygame.event.get():
@@ -88,8 +105,8 @@ def running_game(screen,snake_speed_clock):
 			break #蛇跪了. 游戏结束
 		snake_is_eat_food(snake_coords, food) #判断蛇是否吃到食物
 
-		screen.fill(BG_COLOR)
-		#draw_grid(screen)
+		screen.fill(BG_COLOR)  # 屏幕填充黑色
+		draw_grid(screen)
 		draw_snake(screen, snake_coords)
 		draw_food(screen, food)
 		draw_score(screen, len(snake_coords) - 3)
@@ -117,7 +134,7 @@ def draw_grid(screen):
 		pygame.draw.line(screen, dark_gray, (x, 0), (x, windows_height))
 	for y in range(0, windows_height, cell_size):  # draw 垂直 lines
 		pygame.draw.line(screen, dark_gray, (0, y), (windows_width, y))
-#移动贪吃蛇
+#移动贪吃蛇（左上角为坐标原点【0,0】，向右横坐标，向下纵坐标）
 def move_snake(direction, snake_coords):
     if direction == UP:
         newHead = {'x': snake_coords[HEAD]['x'], 'y': snake_coords[HEAD]['y'] - 1}
@@ -149,24 +166,7 @@ def snake_is_eat_food(snake_coords, food):  #如果是列表或字典，那么�
 #食物随机生成
 def get_random_location():
 	return {'x': random.randint(0, map_width - 1), 'y': random.randint(0, map_height - 1)}
-#开始信息显示
-def show_start_info(screen):
-	font = pygame.font.Font('myfont.ttf', 40)
-	tip = font.render('按任意键开始游戏~~~', True, (65, 105, 225))
-	gamestart = pygame.image.load('gamestart.png')
-	screen.blit(gamestart, (140, 30))
-	screen.blit(tip, (240, 550))
-	pygame.display.update()
 
-	while True:  #键盘监听事件
-		for event in pygame.event.get():  # event handling loop
-			if event.type == QUIT:
-				terminate()     #终止程序
-			elif event.type == KEYDOWN:
-				if (event.key == K_ESCAPE):  #终止程序
-					terminate() #终止程序
-				else:
-					return #结束此函数, 开始游戏
 #游戏结束信息显示
 def show_gameover_info(screen):
 	font = pygame.font.Font('myfont.ttf', 40)
@@ -196,6 +196,4 @@ def draw_score(screen,score):
 def terminate():
 	pygame.quit()
 	sys.exit()
-
-
 main()
