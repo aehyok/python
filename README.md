@@ -15,3 +15,5 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 2019-09-19-markdown基本语法 [https://www.jianshu.com/p/191d1e21f7ed]
 
 2019-09-19-打飞机小游戏 [https://www.cnblogs.com/alex3714/p/7966656.html]
+
+2019-09-20-小游戏打包工具[https://www.cnblogs.com/guoyunlong666/p/9439975.html]
