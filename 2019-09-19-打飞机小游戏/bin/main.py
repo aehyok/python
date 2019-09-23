@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os   
 from pygame.locals import *
 
 from config.settings import *
@@ -148,7 +149,8 @@ def main():
         for event in pygame.event.get():
             if event.type == 12:  # 如果用户按下屏幕上的关闭按钮，触发QUIT事件，程序退出
                 pygame.quit()
-                sys.exit()
+                #sys.exit()
+                os._exit(1)
 
         if delay == 0:
             delay = 60
