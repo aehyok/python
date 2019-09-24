@@ -10,15 +10,12 @@ windows_width = 800
 windows_height = 600 #游戏窗口的大小
 cell_size = 20       #贪吃蛇身体方块大小,注意身体大小必须能被窗口长宽整除
 
-''' 初始化区
-有大小尺寸的, 因此地图的尺寸而言的
-'''
-map_width = int(windows_width / cell_size)
-map_height = int(windows_height / cell_size)
+sourceData = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-sourceData = ['a','b','c','d','e','f','g','h','i','j','k','l','m']
-
-keyBoardData={65:'a',66:'b',67:'c',68:'d',69:'e',70:'f',71:'g',72:'h'}
+keyBoardData={48:'0',49:'1',50:'2',51:'3',52:'4',53:'5',54:'6',55:'7',56:'8',57:'9',
+                97:'a',98:'b',99:'c',100:'d',101:'e',102:'f',103:'g',104:'h',105:'i',106:'j',
+                107:'k',108:'l',109:'m',110:'n',111:'o',112:'p',113:'q',114:'r',115:'s',116:'t',
+                117:'u',118:'v',119:'w',120:'x',121:'y',122:'z'}
 # 颜色定义
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -30,13 +27,10 @@ Red = (255, 0, 0)
 blue = (0, 0, 255)
 dark_blue =(0,0, 139)
 
-
 #游戏背景颜色
 BG_COLOR = black 
 
-
 def main():
-
     pygame.init() # 模块初始化
     clocker=pygame.time.Clock() # 创建Pygame时钟对象
     screen = pygame.display.set_mode((windows_width, windows_height)) #居中实现难度比较大
@@ -44,14 +38,11 @@ def main():
     pygame.display.set_caption("2019-09-23-字母数字小游戏") #设置标题
 
     show_start_info(screen)
-    print('游戏开始了哟')
     while True:
         running_game(screen,clocker)
 
 #开始页显示信息
 def show_start_info(screen):
-    
-    
     font = pygame.font.Font('myfont.ttf', 40)
     tip = font.render('按任意键开始游戏~~~', True, (65, 105, 225))
     gamestart = pygame.image.load('gamestart.png')
@@ -74,17 +65,14 @@ def show_start_info(screen):
 def running_game(screen,clocker):
     coords=[]
     while True:  #键盘监听事件
-        screen.fill(BG_COLOR)  # 屏幕填充黑色
-        
-        startx = random.randint(10, windows_width - 10)
-        starty = 1
-    
-        index=random.randint(0,10)
+        screen.fill(BG_COLOR)  # 屏幕填充黑色 
+        pygame.draw.line(screen, white, (100, 0), (100, 600), 1) 
+        pygame.draw.line(screen, white, (700, 0), (700, 600), 1)    
+        startx = random.randint(100, windows_width - 100)
+        starty = 1 
+        index=random.randint(0,35)
         coords.insert(0,{'x': startx, 'y': starty,'value':sourceData[index]})
-
-        font = pygame.font.Font('myfont.ttf', 30)
-
-
+        font = pygame.font.Font('myfont.ttf', 20)
         for event in pygame.event.get():
             if event.type == QUIT:
                 terminate()   #终止程序
@@ -92,22 +80,17 @@ def running_game(screen,clocker):
                 if(event.key ==K_ESCAPE):
                     terminate()  #终止程序
                 else:
-                    i=0
+                    #判断按键是否与显示值匹配，并计算成绩
                     value= keyBoardData[event.key]
-                    
-                    
                     for coord in coords:
-
                         if(coord['value'] ==value):
                             coords.remove(coord)
                             break
-                        i=i+1    
-        clocker.tick(0.3) #控制fps
+        clocker.tick(1) #控制fps
         newCoords=[]
         #数据下移
         for coord in coords:
-            coord['y']=coord['y']+50
-        screen.fill(BG_COLOR)  # 屏幕填充黑色
+            coord['y']=coord['y']+16
         for coord in coords:  
             scoreSurf = font.render('%s' % coord['value'], True, Green)
             scoreRect = scoreSurf.get_rect()
@@ -115,9 +98,7 @@ def running_game(screen,clocker):
             screen.blit(scoreSurf, scoreRect)
                     
         pygame.display.update()
-
-
-        
+    
 #程序终止
 def terminate():
     pygame.quit()
