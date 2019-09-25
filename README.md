@@ -6,7 +6,7 @@ pip版本19.2.3
 pip更新指令
 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py     python get-pip.py`
 
-pygame安装  pip install pygame 
+pygame安装  `pip install pygame` 
 
 VSCode 每个小游戏单独打开文件夹，防止报错的
 
