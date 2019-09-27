@@ -29,8 +29,9 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 
 - **7、2019-09-27 HTTP协议**
 >>>https://blog.csdn.net/weixin_38087538/article/details/82838762
-  
 >>>https://mp.weixin.qq.com/s/3TaonTzAsqqLLbJ-yrwNdw
+>>>https://www.cnblogs.com/aylin/p/6221436.html
+>>>https://www.cnblogs.com/CareySon/archive/2012/04/27/HTTP-Protocol.html
 
 - **8、2019-09-27 微服务**
 >>>https://www.cnblogs.com/skabyy/p/11396571.html
