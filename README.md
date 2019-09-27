@@ -41,6 +41,6 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 >>>https://github.com/larrycai/sdcamp/blob/master/contents/1-chapter2-git-gerrit.markdown
 >>>https://academy.realm.io/cn/posts/codereview-howto/
 
-- **10、2019-09-27Socket理解 **
+- **10、2019-09-27Socket理解**
 >>>https://www.cnblogs.com/dolphinX/p/3460545.html
 
