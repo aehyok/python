@@ -49,3 +49,8 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 
 >>>TCP和UDP https://www.cnblogs.com/williamjie/p/9390164.html
 
+- **11、2019-09-29负载均衡**
+>>>Linux Nginx负载均衡  https://www.cnblogs.com/jxtxzzw/p/10870170.html
+
+
+
