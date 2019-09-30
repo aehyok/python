@@ -56,3 +56,8 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 >>> https://www.cnblogs.com/huangtailang/p/3872859.html
 
 >>> 测试示例 https://view.officeapps.live.com/op/view.aspx?src=www.szsinostar.com%2F001.xlsx
+
+- **13、2019-09-30 Chrome浏览器在线预览PDF文档（App通过WebView）**
+>>> https://github.com/mozilla/pdf.js
+
+
