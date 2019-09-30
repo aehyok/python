@@ -52,5 +52,6 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 - **11、2019-09-29负载均衡**
 >>>Linux Nginx负载均衡  https://www.cnblogs.com/jxtxzzw/p/10870170.html
 
-
-
+- **12、2019-09-30Web在线预览word文档**
+>>> https://www.cnblogs.com/huangtailang/p/3872859.html
+>>>测试示例 https://view.officeapps.live.com/op/view.aspx?src=www.szsinostar.com%2F001.xlsx
