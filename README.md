@@ -61,4 +61,7 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 - **13、2019-09-30 Chrome浏览器在线预览PDF文档（App通过WebView）**
 >>> https://github.com/mozilla/pdf.js
 
+- **14、2019-10-12 easy-mock初体验**
+>>> https://www.jianshu.com/p/3665e1b1142c
+
 
