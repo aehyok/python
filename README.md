@@ -64,4 +64,8 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 - **14、2019-10-12 easy-mock初体验**
 >>> https://www.jianshu.com/p/3665e1b1142c
 
+- **15、2019-10-12 Vue.js教程**
+>>> https://www.runoob.com/vue2/vue-tutorial.html
 
+- **16、2019-10-12 ElementUI教程**
+>>> https://element.eleme.cn/#/zh-CN/component/installation
