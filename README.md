@@ -69,3 +69,8 @@ VSCode 每个小游戏单独打开文件夹，防止报错的
 
 - **16、2019-10-12 ElementUI教程**
 >>> https://element.eleme.cn/#/zh-CN/component/installation
+
+- **17、2019-10-12 ECMAScript 6 入门 **
+>>> http://es6.ruanyifeng.com
+
+
